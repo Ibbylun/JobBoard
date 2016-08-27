@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dvmowuepp
+  api_key: '676465299976813'
+  api_secret: JnGUyevShREnWjKAPKMl-xxmdd8
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dvmowuepp
+  api_key: '676465299976813'
+  api_secret: JnGUyevShREnWjKAPKMl-xxmdd8
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dvmowuepp
+  api_key: '676465299976813'
+  api_secret: JnGUyevShREnWjKAPKMl-xxmdd8
+  enhance_image_tag: true
+  static_image_support: false
