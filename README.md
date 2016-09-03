@@ -1,3 +1,3 @@
 # Job Board Application
 
-I'll explain laterr
+I'll explain later
