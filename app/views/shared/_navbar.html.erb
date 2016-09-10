@@ -40,8 +40,22 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="/skills">Skills</a></li>
-              <li><a href="/skill_categories">Skill Categories</a></li>
+              <% if current_user.has_role? :admin %>
+                <li><a href="/skills">Skills</a></li>
+                <li><a href="/skill_categories">Skill Categories</a></li>
+              <% end %>
+              <% if current_user.has_role? :student %>
+                <li><%=  link_to "My profile", student_profile_path(current_user.student_profile) %></li>
+                <% end %>
+                <% if current_user.has_role? :company_rep %>
+                  <% if current_user.company_profiles.each do |company| %>
+                  <li><%=  link_to "Create a new Job Listing", new_job_listing_path %></li>
+                    <li><%= link_to company.company_name, company_profile_path(company) %> </li>
+                      <% end %>
+                          <% else %>
+                          <li><%= link_to 'Create company profile', new_company_profile_path %></li>
+                          <% end %>
+                        <% end %>
               <li><a href="#">Something else here</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="#">Separated link</a></li>

@@ -1,8 +1,13 @@
 class SkillsController < ApplicationController
-  before_action :set_skill, only: [:add_user_to, :show, :edit, :update, :destroy]
+  before_action :set_skill, only: [:add_user_to, :show, :edit, :update, :destroy, :remove_user_from]
 
   def add_user_to
-    @skill.user << current_user
+    @skill.users << current_user
+    redirect_to :back
+  end
+
+  def remove_user_from
+    @skill.users.delete(current_user)
     redirect_to :back
   end
   # GET /skills

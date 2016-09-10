@@ -1,9 +1,42 @@
 <h1>Coder Factory Job Board</h1>
 <p>Find talented junior developers</p>
 
+
+<% if user_signed_in? %>
+  <% if current_user.student_profile %>
+    <p class = "lead"> Hi <%= current_user.student_profile.student_name %></p>
+    <% elsif current_user.company_profiles.any? %>
+
+      <p class = "lead" > Hi
+        <%= current_user.company_profiles.first.contact_name %> </p>
+        <% end %>
+        <% if current_user.has_role? :company_rep and !current_user.company_profiles.any? %>
+          <%= link_to 'Create your company profile', new_company_profile_path, class: 'btn btn-primary btn-sm' %>
+        <% end %>
+
+        <% if current_user.has_role? :student %>
+
+          <div class = "row">
+            <% @job_listings.each do |job| %>
+              <div class = "col-md-4">
+                <div class = "panel panel-default">
+                  <div class = "panel-body">
+                    <h4> <% job.title %>  <small> <%= job.company_profile.company_name %></small></h4>
+                    <p><%= job.job_description %></p>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+        <% end %>
+
+<% else %>
+
 <%= link_to "<i class ='fa fa-building'></i> Find new Employees".html_safe, new_user_registration_path(user_type:'company'),
 class:'btn btn-primary btn-lg' %>
 
 
 <%= link_to "<i class ='fa fa-user'></i> Get hired".html_safe, new_user_registration_path(user_type:'student'),
 class:'btn btn-success btn-lg' %>
+
+<% end %>
