@@ -45,9 +45,12 @@
                 <li><a href="/skill_categories">Skill Categories</a></li>
               <% end %>
               <% if current_user.has_role? :student %>
+              <% if current_user.student_profile %>
                 <li><%=  link_to "My profile", student_profile_path(current_user.student_profile) %></li>
                 <% end %>
+                  <% end %>
                 <% if current_user.has_role? :company_rep %>
+              
                   <% if current_user.company_profiles.each do |company| %>
                   <li><%=  link_to "Create a new Job Listing", new_job_listing_path %></li>
                     <li><%= link_to company.company_name, company_profile_path(company) %> </li>

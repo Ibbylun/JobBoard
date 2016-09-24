@@ -23,12 +23,19 @@
                   <div class = "panel-body">
                     <h4> <% job.title %>  <small> <%= job.company_profile.company_name %></small></h4>
                     <p><%= job.job_description %></p>
+                    <p><%= link_to 'Apply for this job', new_job_application_path, class: 'btn btn-primary btn-sm'%></p>
                   </div>
                 </div>
               </div>
               <% end %>
             </div>
         <% end %>
+<h3>Find companies near you</h3>
+<%= form_tag(search_company_profiles_path, method: :post) do %>
+  <%= label_tag :location %>
+  <%= text_field_tag :location %>
+  <%= submit_tag "Search" %>
+<% end %>
 
 <% else %>
 

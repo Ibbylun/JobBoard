@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
-<p id ="notice"> <%= notice %></p>
 
 <div class="row">
-  <div class= "col-md-6">
+  <div class= "col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h2 class="panel-title">Company Profile</h2>
@@ -32,6 +31,7 @@
   <strong>Address:</strong>
   <%= @company_profile.formatted_address %>
 </p>
+<div id="map"></div>
 <p>
   <strong>Company info:</strong>
   <%= @company_profile.description %>
@@ -50,3 +50,23 @@
 </div>
 </div>
 </div>
+
+<script>
+
+      function initMap() {
+        var myLatLng = {lat: <%= @company_profile.latitude %>, lng: <%= @company_profile.longitude %> };
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: '<%= @company_profile.company_name %>'
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEpjv0_vdj6aIVME6bP-51KdIRVzBieEo&callback=initMap">
+    </script>
