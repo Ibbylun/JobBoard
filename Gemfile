@@ -15,6 +15,7 @@ gem 'font-awesome-sass'
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'geocoder'
+gem 'stripe'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
